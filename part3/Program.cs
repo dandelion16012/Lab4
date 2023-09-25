@@ -25,7 +25,7 @@ public class Car
 
 }
 
-public  class CarCatalog: IEnumerator<Car>
+public  class CarCatalog
 {  
     public Car [] cars;
 
@@ -72,17 +72,12 @@ namespace part3
             Car[] cars = new[] { new Car("caaar", 2008, 280), new Car("mercedes", 2020, 340), new Car("ziguli", 2023, 250) };
             CarCatalog carCatalog = new CarCatalog(cars);
             Console.WriteLine("в прямом порядке:");
-            foreach (Car car in carCatalog.cars)
-            {
-                car.print();
-            }
+            foreach (Car car in carCatalog.cars) car.print();
+
 
             Console.WriteLine("\nв обратном порядке:");
             carCatalog.cars.Reverse();
-            foreach (Car car in carCatalog.cars)
-            {
-                car.print();
-            }
+            foreach (Car car in carCatalog.cars) car.print();
 
 
             Console.WriteLine("По году");
@@ -90,8 +85,10 @@ namespace part3
 
             Console.WriteLine("По скорости");
             foreach (var a in carCatalog.BySpeed(carCatalog.cars, 89.5)) a.print();
+            carCatalog
 
         }
+        
 
 
     }
