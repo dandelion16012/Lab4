@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.ConstrainedExecution;
@@ -21,20 +22,23 @@ public class Car
         Console.WriteLine($"{Name}, {ProductionYear}, {MaxSpeed}");
     }
 
-    
+   
+
+
 
 }
 
 public  class CarCatalog
 {  
     public Car [] cars;
+ 
 
     public CarCatalog(Car[] cars)
     {
         this.cars = cars;
     }
 
-    public IEnumerator<Car> GetEnumerator(Car[] cars)
+    public IEnumerator<Car> GetEnumerator()
     {
         for (int i = 0; i < cars.Length; i++)
         {
@@ -42,7 +46,7 @@ public  class CarCatalog
         }
     }
 
-    public static IEnumerable<Car> ByYear(this Car[] cars, int year)
+    public IEnumerable<Car> ByYear( int year)
     {
         foreach (var a in cars)
         {
@@ -51,7 +55,7 @@ public  class CarCatalog
         }
     }
 
-    public static IEnumerable<Car> BySpeed(this Car[] cars, double speed)
+    public IEnumerable<Car> BySpeed( double speed)
     {
         foreach (var a in cars)
         {
@@ -59,6 +63,8 @@ public  class CarCatalog
                 yield return a;
         }
     }
+
+
 }
 
 namespace part3
@@ -80,12 +86,11 @@ namespace part3
             foreach (Car car in carCatalog.cars) car.print();
 
 
-            Console.WriteLine("По году");
-            foreach (var a in carCatalog.ByYear(carCatalog.cars, 1989)) a.print();
+            Console.WriteLine("\nПо году");
+            foreach (var a in carCatalog.ByYear( 2010)) a.print();
 
-            Console.WriteLine("По скорости");
-            foreach (var a in carCatalog.BySpeed(carCatalog.cars, 89.5)) a.print();
-            carCatalog
+            Console.WriteLine("\nПо скорости");
+            foreach (var a in carCatalog.BySpeed( 300)) a.print();
 
         }
         
